@@ -1,0 +1,22 @@
+{
+  "name": "reflectgit",
+  "version": "1.0.0",
+  "description": "Un asistente inteligente que analiza y construye perfiles de GitHub.",
+  "main": "index.js",
+  "scripts": {
+    "watch": "tailwindcss -i ./assets/css/input.css -o ./public/css/style.css --watch"
+  },
+  "keywords": [
+    "github",
+    "profile",
+    "readme",
+    "php",
+    "tailwind"
+  ],
+  "author": "JohnManrique900",
+  "license": "ISC",
+  "devDependencies": {
+    "tailwindcss": "^3.4.4"
+  },
+  "type": "commonjs"
+}
