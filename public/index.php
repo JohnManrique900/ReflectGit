@@ -134,8 +134,8 @@
             
             <div x-show="step === 1" class="p-6 md:p-10">
                 <h2 class="text-2xl font-semibold text-brand-text mb-2">Paso 1: ¡Bienvenido a ReflectGit!</h2>
-                <p class="text-brand-text-dim">Vamos a analizar tu perfil de GitHub para sugerirte automáticamente las tecnologías que dominas.</p>
-                <p class="text-brand-text-dim mt-4">Presiona "Siguiente" para empezar.</p>
+                <p class="text-lg text-brand-text">Construye un perfil profesional en minutos, no en horas.</p>
+                <p class="text-brand-text-dim mt-4">Nuestra IA analizará tu perfil y te daremos todo lo que necesitas para destacar.</p>
             </div>
             
             <div x-show="step === 2" class="p-6 md:p-10" style="display: none;">
