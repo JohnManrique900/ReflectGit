@@ -123,7 +123,7 @@
               },
               
               async copiarCodigo() {
-                  await navigator.clipboard.writeText(this.finalMarkdown + '\n\n');
+                  await navigator.clipboard.writeText(this.finalMarkdown + '\n<!-- Generado con ReflectGit (https://github.com/JohnManrique900/ReflectGit) -->\n');
                   this.copyStatus = '✅ ¡Copiado!';
                   setTimeout(() => { this.copyStatus = 'Copiar Código'; }, 1500);
               },
@@ -173,6 +173,7 @@
               }
           }">
 
+        <!-- PASO 1 (LANDING PAGE) -->
         <div x-show="step === 1" class="w-full">
             <div class="relative z-10 p-6 md:p-12 text-center mb-16 bg-brand-surface/70 border border-brand-border rounded-xl shadow-2xl overflow-hidden">
                 <div class="relative z-20">
@@ -224,7 +225,7 @@
                 <div class="flex flex-col items-center space-y-6">
                     <a href="https://github.com/JohnManrique900/ReflectGit" target="_blank" class="flex flex-col items-center group cursor-pointer">
                         <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 24 24" fill="currentColor" class="text-brand-text group-hover:text-brand-primary transition-colors duration-300 transform group-hover:scale-110">
-                            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.082-.743.082-.729.082-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.304.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.046.138 3.006.404 2.292-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.8.576c4.765-1.589 8.2-6.096 8.2-11.396 0-6.627-5.373-12-12-12z"/></svg>
+                            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.082-.743.082-.729.082-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.304.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.046.138 3.006.404 2.292-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.casd 43.372.823 1.102.823 2.222v3.293c0 .319.192.694.8.576c4.765-1.589 8.2-6.096 8.2-11.396 0-6.627-5.373-12-12-12z"/></svg>
                         <span class="text-3xl font-extrabold mt-2 text-brand-primary">OPEN SOURCE (MIT)</span>
                     </a>
                     <p class="text-brand-text-dim text-center max-w-lg">El código fue construido con **PHP, MySQL y Tailwind CSS** y está 100% disponible...</p>
@@ -271,6 +272,7 @@
             <div class="w-full max-w-3xl mx-auto my-12">
                 <div class="bg-brand-surface border border-brand-border rounded-lg shadow-2xl overflow-hidden">
                     
+                    <!-- PASO 2: USUARIO (Solo Input) -->
                     <div x-show="step === 2" class="p-6 md:p-10 space-y-6" x-cloak>
                         <h2 class="text-2xl font-semibold text-brand-text mb-4">Paso 2: Usuario de GitHub</h2>
                         <div x-show="error" class="mb-4 p-3 bg-red-800/20 border border-red-500/30 rounded-lg text-red-400" x-text="error" x-cloak></div>
@@ -283,6 +285,7 @@
                         </div>
                     </div>
                     
+                    <!-- PASO 3: REDES SOCIALES -->
                     <div x-show="step === 3" class="p-6 md:p-10 space-y-6" x-cloak>
                         <h2 class="text-2xl font-semibold text-brand-text mb-2">Paso 3: Links y Redes Sociales</h2>
                         <p class="text-brand-text-dim mb-6">Copia la URL completa de tu perfil para generar insignias con iconos. (Dejar vacío si no aplica).</p>
@@ -297,6 +300,7 @@
                         </div>
                     </div>
                     
+                    <!-- PASO 4: HABILIDADES (La Gran Biblioteca) -->
                     <div x-show="step === 4" class="p-6 md:p-10 space-y-6" x-cloak>
                         <h2 class="text-2xl font-semibold text-brand-text mb-2">Paso 4: Biblioteca Global de Herramientas</h2>
                         
@@ -332,8 +336,10 @@
                                         </template>
                                     </div>
                                     
+                                    <!-- INPUT PERSONALIZADO (FIX: Múltiples items separados por coma y botón de agregar) -->
                                     <div class="mt-4 flex space-x-2">
-                                        <input type="text" x-model="customInput[categoria]" :placeholder="'¿Falta algo en ' + categoria + '? Añade múltiples items con coma (ej: Tool A, Tool B)'" class="w-full px-4 py-2 bg-brand-bg border border-brand-border rounded-lg text-brand-text placeholder-brand-text-dim/50 focus:ring-brand-primary">
+                                        <!-- BUG FIX: :x-model ahora es x-model="customInput[categoria]" -->
+                                        <input type="text" x-model="customInput[categoria]" :placeholder="'¿Falta algo en ' + categoria + '? (ej: Tool A, Tool B)'" class="w-full px-4 py-2 bg-brand-bg border border-brand-border rounded-lg text-brand-text placeholder-brand-text-dim/50 focus:ring-brand-primary">
                                         <button @click.prevent="addCustomTech(categoria)" class="px-3 py-1 bg-brand-primary rounded-lg text-white font-semibold flex-shrink-0 hover:bg-brand-accent transition-colors">
                                             Agregar
                                         </button>
@@ -341,7 +347,8 @@
                                 </div>
                             </template>
 
-                            <div x-show="selectedTech.some(name => isCustom(name))" class="mt-6">
+                            <!-- Visualización de Custom Items Agregados (FIX VISUAL CRÍTICO) -->
+                            <div x-show="selectedTech.some(name => isCustom(name))" class="mt-6" x-cloak>
                                 <h3 class="text-xl font-extrabold text-brand-text border-b border-brand-border pb-2 mb-3">Herramientas Personalizadas Seleccionadas</h3>
                                 <div class="flex flex-wrap gap-2 mt-2">
                                     <template x-for="tech in selectedTech.filter(name => isCustom(name))" :key="tech">
@@ -356,6 +363,7 @@
                         </div>
                     </div>
 
+                    <!-- PASO 5: BIOGRAFÍA (Antes Paso 6) -->
                     <div x-show="step === 5" class="p-6 md:p-10" x-cloak>
                         <h2 class="text-2xl font-semibold text-brand-text mb-2">Paso 5: Sugerencias de Biografía</h2>
                         <p class="text-brand-text-dim mb-6">Basado en tus habilidades, nuestra IA (simulada) sugiere estas opciones:</p>
@@ -381,16 +389,19 @@
                         </div>
                     </div>
 
+                    <!-- PASO 6: ESTILO Y TARJETAS (Antes Paso 7) -->
                     <div x-show="step === 6" class="p-6 md:p-10" x-cloak>
                         <h2 class="text-2xl font-semibold text-brand-text mb-2">Paso 6: Elige Estilo y Tarjetas</h2>
                         
                         <div class="bg-brand-bg/50 p-4 rounded-lg mb-8">
                             <h3 class="text-xl font-extrabold text-brand-primary mb-3">Tarjetas de Estadísticas (Stats)</h3>
                             <div class="space-y-3">
+                                <!-- Opción Trofeos -->
                                 <label class="flex items-center space-x-3 text-brand-text cursor-pointer">
                                     <input type="checkbox" x-model="showTrophies" class="w-4 h-4 text-brand-primary bg-brand-surface border-brand-border rounded focus:ring-brand-primary">
                                     <span>🏆 Mostrar Trofeos de GitHub</span>
                                 </label>
+                                <!-- Opción Contribuciones -->
                                 <label class="flex items-center space-x-3 text-brand-text cursor-pointer">
                                     <input type="checkbox" x-model="showContribs" class="w-4 h-4 text-brand-primary bg-brand-surface border-brand-border rounded focus:ring-brand-primary">
                                     <span>🔝 Mostrar Contribuciones Anuales</span>
@@ -415,6 +426,7 @@
                         </div>
                     </div>
 
+                    <!-- PASO 7: CÓDIGO FINAL (Antes Paso 8) -->
                     <div x-show="step === 7" class="p-6 md:p-10" x-cloak>
                         <h2 class="text-2xl font-semibold text-brand-text mb-2">Paso 7: ¡Tu perfil está listo!</h2>
                         <p class="text-brand-text-dim mb-4">Copia este código y pégalo en el `README.md` de tu repositorio de perfil de GitHub.</p>
@@ -422,6 +434,7 @@
                     </div>
 
 
+                    <!-- FOOTER DE NAVEGACIÓN (Modificado) -->
                     <footer class="bg-brand-bg/50 border-t border-brand-border px-6 py-4 flex justify-between items-center">
                         
                         <button 

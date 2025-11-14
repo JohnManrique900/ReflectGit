@@ -17,7 +17,7 @@ $socials = $datos['socials'] ?? []; // <-- ¡NUEVO!
 
 header('Content-Type: application/json');
 
-if (empty($nombres_tech) && empty($biografia) && empty($socials)) {
+if (empty($nombres_tech) && empty($biografia) && empty($socials) && empty($usuario_github)) {
     echo json_encode(['error' => 'No se seleccionó ninguna información.']);
     exit;
 }
@@ -55,6 +55,7 @@ $custom_tech_names = [];
 $tecnologias_encontradas = [];
 
 if (!empty($nombres_tech)) {
+    // Primero, consultamos la BD para ver cuáles nombres SÍ existen
     $db_query_string = implode(',', array_fill(0, count($nombres_tech), '?'));
     $sql_check = "SELECT nombre FROM tecnologias WHERE nombre IN ($db_query_string)";
 
@@ -70,6 +71,7 @@ if (!empty($nombres_tech)) {
     }
     $stmt->close();
 
+    // Separamos los nombres: los que sí se encontraron vs. los que son custom
     foreach ($nombres_tech as $name) {
         if (in_array($name, $nombres_en_bd)) {
             $db_tech_names[] = $name;
@@ -78,6 +80,7 @@ if (!empty($nombres_tech)) {
         }
     }
 
+    // Obtenemos las URLs de las tecnologías que SÍ están en la BD
     if (!empty($db_tech_names)) {
         $placeholders_string = implode(',', array_fill(0, count($db_tech_names), '?'));
         $sql_fetch = "SELECT nombre, url_insignia FROM tecnologias WHERE nombre IN ($placeholders_string)";
