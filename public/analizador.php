@@ -1,23 +1,17 @@
 <?php
-// Visión Pro: 1. Establecemos la cabecera de respuesta como JSON.
-// Esto le dice al navegador (o a Alpine.js) que estamos enviando datos, no HTML.
+// 1. Establecemos la cabecera de respuesta como JSON.
 header('Content-Type: application/json');
 
-// Visión Pro: 2. Obtenemos el nombre de usuario de forma segura.
-// Lo leemos de la URL (ej: analizador.php?usuario=JohnManrique900)
+// 2. Obtenemos el nombre de usuario de forma segura.
 $usuario = $_GET['usuario'] ?? '';
 
 if (empty($usuario)) {
-    // Si no nos dan usuario, devolvemos un error.
     echo json_encode(['error' => 'No se proporcionó un usuario.']);
     exit;
 }
 
-// Visión Pro: 3. Preparamos la llamada a la API de GitHub.
-$url = 'https://api.github.com/users/' . urlencode($usuario) . '/repos';
-
-// Visión Pro: 4. ¡EL TRUCO CLAVE! La API de GitHub RECHAZA peticiones
-// sin un 'User-Agent'. Esto nos identifica y nos hace ver como un script legítimo.
+// 3. Preparamos la llamada a la API de GitHub.
+$url = 'https://api.github.com/users/' . urlencode($usuario) . '/repos?per_page=100'; // Solicitamos 100 repos por página
 $opciones = [
     'http' => [
         'method' => 'GET',
@@ -27,24 +21,32 @@ $opciones = [
 ];
 $contexto = stream_context_create($opciones);
 
-// Visión Pro: 5. Ejecutamos la llamada a la API.
-// Usamos '@' para suprimir warnings si la API falla (ej. usuario no existe)
+// 4. Ejecutamos la llamada a la API.
 $respuesta = @file_get_contents($url, false, $contexto);
 
 if ($respuesta === FALSE) {
-    // Si la API falla (usuario no existe, límite de peticiones, etc.)
+    // Si la API falla (límite superado, o user no existe)
     echo json_encode(['error' => 'No se pudo encontrar el usuario o se superó el límite de la API.']);
     exit;
 }
 
-// Visión Pro: 6. Procesamos los datos.
+// 5. Procesamos los datos.
 $repositorios = json_decode($respuesta, true);
 $conteo_lenguajes = [];
 
+if (empty($repositorios)) {
+    // Si el usuario existe pero no tiene repositorios públicos
+    echo json_encode([
+        'usuario' => $usuario,
+        'total_repos' => 0,
+        'lenguajes' => new stdClass(), // Aseguramos objeto vacío {}
+        'analisis_exitoso' => true
+    ]);
+    exit;
+}
+
 foreach ($repositorios as $repo) {
     $lenguaje = $repo['language'];
-    
-    // Solo contamos lenguajes válidos (no 'null')
     if ($lenguaje) {
         if (!isset($conteo_lenguajes[$lenguaje])) {
             $conteo_lenguajes[$lenguaje] = 0;
@@ -53,14 +55,15 @@ foreach ($repositorios as $repo) {
     }
 }
 
-// Visión Pro: 7. Ordenamos los lenguajes de más usado a menos usado.
+// 6. Ordenamos y aseguramos que sea un objeto JSON
 arsort($conteo_lenguajes);
 
-// Visión Pro: 8. Enviamos la respuesta JSON final.
+// 7. Enviamos la respuesta JSON final.
 echo json_encode([
     'usuario' => $usuario,
     'total_repos' => count($repositorios),
-    'lenguajes' => $conteo_lenguajes
+    'lenguajes' => $conteo_lenguajes,
+    'analisis_exitoso' => true
 ]);
 
 ?>

@@ -6,6 +6,10 @@ module.exports = {
   ],
   theme: {
     extend: {
+      // VISIÓN UX/UI: Definimos la fuente Poppins como base
+      fontFamily: {
+        sans: ['Poppins', 'sans-serif'], // Usamos Poppins como fuente principal
+      },
       // Aquí definimos nuestra paleta de colores "ReflectGit"
       colors: {
         'brand-bg': '#0D1117',        // Nuestro fondo principal (Casi negro)

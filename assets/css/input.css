@@ -1,21 +1,24 @@
+/*
+ * VISIÓN UX/UI: Importamos la tipografía Poppins.
+ * Esta fuente es moderna y profesional, lo que eleva el diseño de producto.
+ */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Visión Pro: Usamos @layer base para inyectar nuestros estilos
-  globales. Esto es más limpio que editar el <body> en el HTML.
-*/
 @layer base {
   html {
-    /* Esto hace que el scroll sea suave en toda la app */
     scroll-behavior: smooth;
-    /* Forzamos el modo oscuro por defecto */
     color-scheme: dark;
+    /* Aplicamos la fuente Poppins a todo el HTML */
+    font-family: 'Poppins', sans-serif;
   }
   body {
     /* Aplicamos nuestra paleta de colores base */
     @apply bg-brand-bg text-brand-text;
-    /* Mejora el renderizado de la fuente */
+    /* Mejoramos el renderizado de la fuente */
     @apply antialiased;
   }
 }
